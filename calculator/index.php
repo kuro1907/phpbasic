@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
             </tr>
         </table>
-        <button type="submit">Calculate</button>
+        <button type="submit" onclick="calculate()">Calculate</button>
     </form>
     <h2>RESULT:</h2>
     <p><?php
