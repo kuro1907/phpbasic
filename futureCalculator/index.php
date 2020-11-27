@@ -49,7 +49,12 @@
         $value1 = $_POST["value1"];
         $rate = $_POST["rate"];
         $year = $_POST["year"];
-        $result = (($value1 + ($value1 * $rate) / 100)) * $year;
+
+        for ($i = 0; $i < $year; $i++) {
+            $interest_rate_1year = ($value1 * $rate) / 100;
+            $result = $value1 + $interest_rate_1year;
+            $value1 = $result;
+        }
     }
     if (isset($result)) {
         echo $result;
