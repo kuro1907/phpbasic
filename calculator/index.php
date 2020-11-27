@@ -14,7 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $input1 * $input2;
             break;
         case "/":
-            $result = $input1 / $input2;
+            try {
+                if ($input2 == 0) {
+                    throw new Exception('Vui lòng nhập mẫu số khác 0', 1);
+                }
+                $result = $input1 / $input2;
+            } catch (Exception $e) {
+                $err = $e->getMessage();
+            }
             break;
     }
 }
@@ -71,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo $input1 . " " . $operator . " " . $input2 . " = " . $result;
         }
         ?></p>
+    <p><?= $err ?? "" ?></p>
 </body>
 
 </html>
