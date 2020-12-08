@@ -39,7 +39,7 @@
             } else if ($email == "") {
                 throw new Exception("Vui lòng nhập dữ liệu");
             } else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $contact = ["$name", "$email", "$phone"];
+                saveDataJSON('user.json', $name, $email, $phone);
             } else {
                 throw new Exception("Vui lòng nhập đúng định dạng Email");
             }
@@ -49,6 +49,39 @@
     }
     ?>
     <p><?= $err ?? "" ?></p>
+    <?php
+
+    function saveDataJSON($filename, $name, $email, $phone)
+    {
+
+        $contact = [
+            'name' => $name,
+            'email' => $email,
+            'tel' => $phone,
+        ];
+        $arr_data = loadRegistrations('user.json'); // []
+
+        // đẩy mảng contact vào $array_data
+        $arr_data[] = $contact;
+        // chuyển mảng dữ liệu > json
+        $json_contact = json_encode($arr_data);
+        // đưa vào file json
+        file_put_contents("user.json", $json_contact);
+        echo "<pre>";
+        print_r($json_contact);
+        echo "</br>";
+        echo "</pre>";
+
+        echo "Save succes!!";
+    }
+    function loadRegistrations($filename)
+    {
+        $jsondata = file_get_contents($filename); // lấy dữ liệu từ file json ra
+        $arr_data = json_decode($jsondata, true); // chuyển json > mảng dữ liệu
+        return $arr_data;
+    }
+
+    ?>
 </body>
 
 </html>
