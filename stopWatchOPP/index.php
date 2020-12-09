@@ -39,7 +39,7 @@ class StopWatch
 $watch = new StopWatch();
 $watch->start();
 
-file_get_contents('https://www.google.com/');
+file_get_contents('https://www.google.com.vn/');
 
 $watch->stop();
 $kq = $watch->getElapsedTime();
