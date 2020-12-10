@@ -104,3 +104,6 @@ class MovePoint extends Point
         return $this->y += $this->ySpeed;
     }
 }
+
+$obj = new MovePoint(5, 3, 5, 2);
+echo $obj;
